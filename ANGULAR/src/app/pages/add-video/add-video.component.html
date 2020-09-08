@@ -1,0 +1,45 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form_main">
+                <h4 *ngIf="type!=1" class="heading"><strong> your Album</strong> Here <span></span></h4>
+                <h4 *ngIf="type==1" class="heading"><strong>Add your Album</strong> Here <span></span></h4>
+                <div class="form">
+                    <button type="button" class="btn btn-primary" (click)="gotoedit()"
+                        title="edit  video">Edit</button>
+
+                    <form [formGroup]="add" (ngSubmit)="addData(add)" ata-toggle="validator" id="contactFrm"
+                        name="contactFrm">
+                        <input type="text" [formControl]="add.controls['name']" required=""
+                            placeholder="Please enter author name" name="name" class="txt">
+                        <input type="text" required="" [formControl]="add.controls['discriptiom']"
+                            placeholder="Please enter description" name="mob" class="txt">
+
+                        <div>
+                            <input *ngIf="type ==1" type="file" (change)="uploadFile($event)" />
+                            <img *ngIf="loader" src="assets/loader.gif" id="loader" width="100%">
+
+                            <div *ngIf="imageUrl">
+                                <video width="400" controls>
+                                    <source src={{imageUrl}} type="video/mp4">
+                                    <source src={{imageUrl}} type="video/ogg">
+
+                                </video>
+                            </div>
+
+
+                        </div>
+
+                        <input *ngIf="type==1" type="submit" value="submit"  name="submit" class="txt2">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
